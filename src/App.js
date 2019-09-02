@@ -2,6 +2,8 @@ import React, {useState, useEffect} from 'react';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import './css/App.css';
 import Menu from './Menu';
+const config = require('./config.json');
+
 var dateFormat = require('dateformat');
 
 const toWeekday=(t)=> dateFormat(t, "ddd")
@@ -10,14 +12,14 @@ const toDay =  (t) => dateFormat(t, "dS");
 //const toDate = (t) => dateFormat(t, "ddd dS mmm yyyy");
 const toTime = (t) => dateFormat(t, "HH:MM"); /*"h:MM TT"*/
 
-const postsUrl = `https://vegansoc.000webhostapp.com/wp-json/wp/v2/posts`
+const postsUrl = `${config.wpUrl}wp-json/wp/v2/posts`;
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       menuHidden: true,
-      menuItems: ["Events", "Guide", "About Us"],
+      menuItems: config.menuItems,
       width: window.innerWidth
     }
     this.toggleMenu = this.toggleMenu.bind(this);
@@ -74,9 +76,9 @@ function BigLogo() {
   <div>
     <img className="mainLogo" src="../logoWhite.svg" alt="Vegansoc Logo"/>
     <footer className="bottomText">
-      <a href="https://vegansoc.000webhostapp.com/wp-login.php">Site Admin page</a>
-      <p> &copy; {new Date().getUTCFullYear()} DU Vegan Society </p>
-      <p> Site designed by Nicky Pochinkov</p>
+      <a href={`${config.wpUrl}wp-login.php`}>Site Admin page</a>
+      <p> &copy; {new Date().getUTCFullYear()} {config.longTitle} </p>
+      <p> Site designed by <a href="http://pesvut.netsoc.ie">Nicky Pochinkov</a></p>
     </footer>
   </div>
   )
@@ -97,7 +99,6 @@ function Events(props) {
   const events = await data.json();
     setEvents(events)
   }
-  /*    */
 
   return(
     <div className="card">

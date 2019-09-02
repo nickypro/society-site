@@ -1,6 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-//import { isProperty } from '@babel/types';
+const config  = require('./config.json');
 
 const toKebabCase = str => 
     str &&
@@ -22,11 +22,11 @@ function Menu(props) {
       <i className="burger fas fa-bars"></i>
     </button>
     <button onClick={props.toggleMenu} className="topbarButton">
-      <h1 id="topbarTitle">VEGANSOC</h1>
+      <h1 id="topbarTitle">{config.shortTitle}</h1>
     </button>
   </div>:""}
 
-  <Link to="/"> <h1 className="menuHead"> DU Vegan <br/> Society </h1> </Link>
+  <Link to="/"> <h1 className="menuHead">{config.longTitle}</h1> </Link>
 
   {props.menuItems.map(menuItem =>
     <Link  

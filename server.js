@@ -9,6 +9,7 @@ const eventScraper = require('./scraper')
 const Event = require('./event')
 var dateFormat = require('dateformat');
 const toTime = (t) => dateFormat(t, "HH:MM"); /*"h:MM TT"*/
+const config = require('./src/config.json')
 
 var CounterSchema = new mongoose.Schema({
   _id: {type: String, required: true}, 
@@ -68,17 +69,15 @@ app.get('/:page', function (req, res) {
 
 /* Web scraper */
 
-const url = `https://m.facebook.com/pg/duvegansoc/events/`;
-//const url = `https://m.facebook.com/pg/TheHist.Trinity/events/`
-//const url = `https://m.facebook.com/events/330908137502634`
-const proxiedUrl = `http://api.scraperapi.com?api_key=b3847a8ad06fd9aad82d8ba7db3220aa&url=${url}`
+//const url = `https://m.facebook.com/pg/duvegansoc/events/`;
+//const proxiedUrl = `http://api.scraperapi.com?api_key=b3847a8ad06fd9aad82d8ba7db3220aa&url=${url}`
 //const proxiedUrl = "http://pesvut.netsoc.ie/other/oldpagetoscrape.html"
 //const proxiedUrl = "http://pesvut.netsoc.ie/other/newtestpagetoscrape.html"
+const proxiedUrl = `${config.scraperUrl}&url=${config.eventsUrl}`  
 
 const options = {
   url: proxiedUrl,
   json: false
 }
-
 
 app.listen(process.env.PORT || 8080);

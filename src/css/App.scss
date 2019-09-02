@@ -74,7 +74,7 @@ a {
   overflow-x: hidden;
   transition: 1s;
 
-  grid-template-columns: max-content 1fr; 
+  grid-template-columns: 20rem 1fr; 
   grid-template-rows: 100vh;
 
   &::after {
@@ -310,6 +310,7 @@ button{
   }
 }
 #topbarTitle{
+  text-transform: uppercase;
   margin: 0px;
   font-size: 2rem;
   color: white;

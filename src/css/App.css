@@ -60,9 +60,8 @@ a:hover {
   overflow-x: hidden;
   -webkit-transition: 1s;
   transition: 1s;
-  -ms-grid-columns: max-content 1fr;
-      grid-template-columns: -webkit-max-content 1fr;
-      grid-template-columns: max-content 1fr;
+  -ms-grid-columns: 20rem 1fr;
+      grid-template-columns: 20rem 1fr;
   -ms-grid-rows: 100vh;
       grid-template-rows: 100vh;
 }
@@ -71,7 +70,7 @@ a:hover {
   content: "";
   background: linear-gradient(60deg, #9CFC97, #cdff74);
   background-color: #333;
-  background-image: url("../trees03.jpg");
+  background-image: url("../trees03hd.jpg");
   background-position: center;
   background-size: cover;
   opacity: 0.3;
@@ -372,6 +371,7 @@ button {
 }
 
 #topbarTitle {
+  text-transform: uppercase;
   margin: 0px;
   font-size: 2rem;
   color: white;
