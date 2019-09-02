@@ -424,6 +424,35 @@ button{
   100% {opacity: 1;}
 }
 
+.leftRightLeft {
+  width: 100%; 
+  background-color: #ddd; 
+  height: 1rem;
+  animation: bounceLeftRight 1s infinite alternate linear; 
+}
+
+@keyframes bounceLeftRight {
+  0%{
+    transform-origin: 0%;
+    transform: scaleX(0.02);
+  }
+  33%{
+    transform-origin: 30%;
+    transform: scaleX(0.3);
+  }
+  50%{
+    transform: scaleX(0.35)
+  }
+  67%{
+    transform-origin: 70%;
+    transform: scaleX(0.3);
+  }
+  100%{
+    transform-origin: 100%;
+    transform: scaleX(0.02);
+  }
+}
+
 /* Bottom Text */
 .bottomText {
   position: absolute;

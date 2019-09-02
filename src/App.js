@@ -103,7 +103,7 @@ function Events(props) {
   return(
     <div className="card">
       <h1> Our Events </h1>
-
+      {(events.length===0)?<Loading />:""}
       {/* Scrap here */}
       <div className="events">
       {events.map(event => 
@@ -148,6 +148,7 @@ function Wordpress(props) {
   return(
   <div className="card">
     <h1> {props.match.params.slug} </h1>
+    {(posts.length===0)?<Loading />:""}
     <div className="content"
     dangerouslySetInnerHTML=
     {{__html: posts
@@ -159,5 +160,9 @@ function Wordpress(props) {
   </div>
   )
 }
+
+const Loading = () => (
+  <div className="leftRightLeft" />
+)
 
 export default App;
