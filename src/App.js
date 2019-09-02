@@ -11,6 +11,8 @@ const toMon =  (t) => dateFormat(t, "mmmm");
 const toDay =  (t) => dateFormat(t, "dS");
 //const toDate = (t) => dateFormat(t, "ddd dS mmm yyyy");
 const toTime = (t) => dateFormat(t, "HH:MM"); /*"h:MM TT"*/
+const toNum = (t) => Number(new Date(t));
+const startOfToday = () => new Date().setHours(0,0,0,0);
 
 const postsUrl = `${config.wpUrl}wp-json/wp/v2/posts`;
 
@@ -106,31 +108,45 @@ function Events(props) {
       {(events.length===0)?<Loading />:""}
       {/* Scrap here */}
       <div className="events">
-      {events.map(event => 
-        <a className="event" 
-          key={event._id} 
-          href={event.url} 
-          data-date={event.date} 
-          data-title={event.title}
-          data-location={event.location}>
-          <div className="eventDate">
-            <span className="dateWeekday">{toWeekday(event.date)}
-              <span className="dateDay">    {toDay(event.date)}</span>
-            </span>
-            <span className="dateMonth">  {toMon(event.date)}</span>
-          </div>
-          <div className="eventData">
-            <h2>  {(event.title.length > 30) ? event.title.slice(0, 29)+"...": event.title}</h2>
-            <p>   {event.location}</p>
-            <p>{toTime(event.date)}</p>
-          </div>
-        </a>
-      )}
+      {events
+        .filter(event => startOfToday() <= toNum(event.date) )
+        .reverse()
+        .map(event => <Event event={event} key={event._id} />)}
+      </div>
+      {events.length!=0?
+      <h2 style={{fontFamily: "'Playfair Display', serif"}}> Past Events </h2>
+      :""}  
+      <div className="events">
+      {events
+        .filter(event => startOfToday() > toNum(event.date) )
+        .map(event => <Event event={event} key={event._id} />)}
       </div>
           
     </div>
   )
 }  
+
+const Event = (props) => (
+  <a  className="event"
+      href={props.event.url} 
+      data-date={props.event.date} 
+      data-title={props.event.title}
+      data-location={props.event.location}>
+    <div className="eventDate">
+      <span className="dateWeekday">{toWeekday(props.event.date)}
+        <span className="dateDay">    {toDay(props.event.date)}</span>
+      </span>
+      <span className="dateMonth">  {toMon(props.event.date)}</span>
+    </div>
+    <div className="eventData">
+      <h2>  {(props.event.title.length > 30) ? 
+                props.event.title.slice(0, 29)+"...": 
+                props.event.title}</h2>
+      <p>   {props.event.location}</p>
+      <p>{toTime(props.event.date)}</p>
+    </div>
+  </a>
+)
 
 function Wordpress(props) {
   const [posts, setPosts] = useState([]);
