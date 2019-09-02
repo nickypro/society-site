@@ -41,17 +41,22 @@ class App extends React.Component {
     this.setState({ width: window.innerWidth });
   };
 
+  isMenuShown = () => {
+    return( this.state.width <= 900 & !this.state.menuHidden )
+  }
+
   render() {
   return (
     <Router>
     <div className="App welcomeBox"
-    style={(this.state.width <= 900 & !this.state.menuHidden)?{gridTemplateRows: "1fr 0px"}:{}}>
+    style={ this.isMenuShown.bind(this)()?{ /*gridTemplateRows: "1fr 0px"*/ }:{}}>
       <Menu menuItems={this.state.menuItems} 
             width={this.state.width}
             hidden={this.state.menuHidden}
             toggleMenu={this.toggleMenu} />
       
-      <div className="pageFocus">
+      <div  className="pageFocus" 
+            style={this.isMenuShown.bind(this)()? {transform: "translateX(100%)"} : {}}>
         <Switch>
           <Route path="/events" component={Events} />
           <Route path="/:slug" component={Wordpress} />

@@ -71,6 +71,7 @@ a {
   display: grid;
   min-height: 100vh;
   overflow: auto;
+  overflow-x: hidden;
   transition: 1s;
 
   grid-template-columns: max-content 1fr; 
@@ -96,6 +97,7 @@ a {
 
 /* Large part of Page */
 .pageFocus {
+  transition: 0.4s ease-out;
   position: relative;
   display: block;
   overflow-y: auto;
@@ -259,7 +261,6 @@ button{
 	align-items: center;
 	flex-grow: 1;
   flex-direction: column;
-  overflow: hidden;
 }
 
 .mainButton {

@@ -1,5 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
+//import { isProperty } from '@babel/types';
 
 const toKebabCase = str => 
     str &&
@@ -10,7 +11,9 @@ const toKebabCase = str =>
 
 function Menu(props) {
   return(
-  <div className="mainMenu" onClick={props.toggleMenu}>
+  <nav  className="mainMenu"  
+        onClick={props.toggleMenu} 
+        style={props.hidden?{overflow: "hidden"}:{}}>
   
 
   { (props.width <= 900)?
@@ -35,7 +38,7 @@ function Menu(props) {
   )}
 	
   <SocialMediaLinks />
-  </div>
+  </nav>
 )}
 
 function SocialMediaLinks() {
