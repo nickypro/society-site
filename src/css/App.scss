@@ -1,0 +1,440 @@
+@import url('https://fonts.googleapis.com/css?family=Playfair+Display:400,700|Roboto&display=swap');
+
+$darkGreen: #09513C;
+$purpleColor: #471147;  
+$paleGreen: #9CFC97;
+$yellowGreen: #cdff74;
+$golden: #ECFEAA;
+$flax: #E2DE84;
+
+$linkHover: lighten($purpleColor, 15);
+
+$menuLinkHover: $yellowGreen;
+$menuHeadColor: white;
+$menuButtonColor: white;
+$menuButtonColorHover: $yellowGreen;
+$menuButtonBackground: rgba(white, 0.1);
+
+html, body {
+  width: 100%;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+body {    
+  background: linear-gradient( 
+    60deg, 
+    darken(desaturate($paleGreen, 50), 65), 
+    darken(desaturate($yellowGreen, 50), 65) 
+  );
+}
+
+h1 {
+  position: relative;
+  font-family: 'Playfair Display', serif;
+  font-size: 3em;
+  display: inline-block;
+  margin: 3rem;
+
+  &::after{
+    content: '';
+    display: block;
+    position: absolute;
+    left: 1rem;
+    right: 1rem;
+    bottom: -0.8rem;
+    height: 1px;
+    background-color: $purpleColor;
+  }
+}
+p,a {
+  font-family: 'Roboto', sans-serif;
+}
+a {
+  position: relative;
+  text-decoration: none;
+  color: $purpleColor;
+  &:hover{
+    color: $linkHover;
+  }
+}
+
+/* Content Devision (menu|focus) */
+.welcomeBox {
+  text-align: center;
+  position: fixed;
+  width: 100%;  
+  display: grid;
+  min-height: 100vh;
+  overflow: auto;
+  transition: 1s;
+
+  grid-template-columns: max-content 1fr; 
+  grid-template-rows: 100vh;
+
+  &::after {
+    content: "";
+    background: linear-gradient( 60deg, $paleGreen, $yellowGreen);
+    background-color: #333;
+    background-image: url("../trees03.jpg");
+    background-position: center;
+    background-size: cover;
+    opacity: 0.3;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    z-index: -1;   
+  }
+
+}
+
+/* Large part of Page */
+.pageFocus {
+  position: relative;
+  display: block;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+
+/*Large Main Logo*/
+.mainLogo {
+  position: absolute;
+  width: 90%;
+  left: 3%;
+  top: 50%;
+  transform: translateY(-50%);
+
+  animation-name: fadeToRight;
+  animation-direction: forwards;
+  animation-duration: 0.8s; 
+  animation-timing-function: ease-out;
+  font-family: sans-serif;
+}
+
+@keyframes fadeToRight {
+  0% {left: -5%;
+    opacity: 0;
+  }
+  100%{
+    left: 3%;
+    opacity: 1;
+  }
+}
+
+
+/* Display Cards */
+.card{
+  width: 95%;
+  box-sizing: border-box;
+  min-height: 80vh;
+  padding: 0rem 2rem 2rem;
+  margin: 1rem;
+  margin-top: 10vh;
+  border-radius: 0rem;
+  background-color: #fff;
+  position: relative;
+
+  transition: 1s;
+  animation: upFromBottom 0.2s ease-out;
+
+  @keyframes upFromBottom {
+    0% {
+      right: -80vw;
+    }
+    100% {
+      right: 0px;
+    }
+  }
+  p {
+    text-align: justify;
+  }
+  h1 {
+    text-transform:capitalize;
+  }
+}
+
+.download {
+  display: inline-block;
+  text-align: center;
+  font-size: 1.85rem;
+  margin-top: 1rem; 
+  padding: 0.5rem 1rem;
+  background-color: #ded;
+  color: $purpleColor;
+  
+  &:hover{
+    background-color: darken(#ded, 5);
+    box-shadow: 0px 2px 3px rgba(black, 0.2);
+  }
+}
+
+
+/* Event Card*/
+.events{
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(420px, 1fr));
+  grid-column-gap: 1rem;
+}
+.event{
+  position: relative;
+  display: flex;
+  padding: 0.7rem 0rem;
+  box-shadow: 1px 1px 5px 3px rgba(black, 0.03);
+  margin: 1rem 0rem; 
+  &:hover {
+    box-shadow: 1px 3px 7px 3px rgba(black, 0.1);
+    transform: translateY(-1px)
+  }
+}
+.eventDate{
+  width: 7.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.dateWeekday{
+  font-size: 1.5rem;
+}
+.dateDay {
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+.eventData{
+  display: flex;
+  flex-direction: column;
+  padding: 0px 0.5rem;
+
+  h2 {
+    font-size: 1.3rem;
+    text-align: left;
+    font-family: 'Playfair Display', cursive;;
+    font-weight: normal;
+    margin: 0px;
+  }
+  p {
+    margin: 0.2rem 0px 0px;
+    color: lighten($purpleColor, 20);
+  } 
+}
+
+.wp-block-image {
+  display: inline-block;
+  clear: both;
+}
+
+/* Side Menu */
+button{
+  background: transparent;
+}
+
+.menuHead {
+  text-shadow: 1px 1px 10px rgba(black, 0.4);
+  color: $menuHeadColor;
+  transition: color 0.1s;
+  &::after{
+    background-color: $menuHeadColor;
+  }
+  &:hover{
+    color: $menuLinkHover;
+    &::after{
+      background-color: $menuLinkHover;
+    }
+  }
+}
+
+.mainMenu {
+  display: flex; 
+  position: relative;
+	justify-content: center;
+	align-self: stretch;
+	align-items: center;
+	flex-grow: 1;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.mainButton {
+	padding: 0.7rem 1rem;
+	text-align: center;
+  font-size: 1.9rem;
+  text-shadow: 0px 0px 16px rgba(white, 0.2);
+	width: 15rem;
+	margin: 0 auto 10px;
+
+  border: 2px solid rgba($menuButtonColor, 0.7);
+	border-radius: 35px;
+
+  cursor: pointer;
+  text-decoration: none;
+	color: $menuButtonColor;
+  background-color: $menuButtonBackground;
+
+	position: relative;
+	transition: 0.3s;
+	box-sizing: border-box;
+    
+  &:hover {
+    background:	linear-gradient(30deg, rgba($darkGreen, 0.8), rgba(lighten($darkGreen, 20), 0.8) );
+    color: $menuButtonColorHover;
+    text-shadow: none;
+  }
+}
+
+.socialMediaIcon {
+	color: $menuButtonColor;
+  &:hover {
+	color: $menuLinkHover;
+  }
+}
+
+.topbar {
+  display: none;
+}
+.burger {
+  font-size: 2.2rem;
+  padding: 0.2rem;
+  color: white;
+  cursor: pointer;
+  &:hover{
+    color: $menuLinkHover;
+  }
+}
+#topbarTitle{
+  margin: 0px;
+  font-size: 2rem;
+  color: white;
+  cursor: pointer;
+  padding: 0px;
+  &::after{
+    display: none;
+  }
+}
+.topbarButton {
+  border: none;
+}
+/*meida queries*/
+@media screen and (max-width: 900px) {
+  .topbar {
+    display: grid;
+    box-sizing: border-box;
+    padding: 0.5rem;
+    width: 100%;
+    grid-template-columns: 10vh 1fr;
+    grid-template-rows: 3rem
+  }
+
+  .welcomeBox{
+    grid-template-rows: 4rem calc(100vh - 4rem) 0px;
+    grid-template-columns: 1fr;
+  }
+
+  .mainMenu{
+    h1{margin:0.5rem 1rem 2rem;}
+    justify-content: flex-start;
+    transition: 1s;
+  }
+  .showMenu{ display: flex; }
+
+  .card {
+    padding: 2rem 0.7rem;
+    margin: 0.5rem;
+    width: calc(100%-1rem);
+    grid-template-columns: 1fr;
+    h1 {
+      margin: 2rem 0.5rem;
+    }
+  }
+  .event{
+    display: grid;
+    grid-template-columns: 4.3rem 1fr;
+    margin: 0;  
+    width: 92vw;
+    overflow: hidden;
+  }
+  .eventDate{
+    width: 4.3rem;
+  }
+  .dateWeekday, .dateDay{
+    font-size: 1.2rem;
+  }
+  .dateMonth{
+    font-size: 0.8rem;
+  }
+
+  span {
+    word-break: normal;
+    word-wrap: break-word;
+  }
+}
+@media screen and (max-width: 350px){
+  .event {
+    width: 95vw;
+  }
+  .eventData h2 {
+    font-size: 1.1rem;
+  }
+  .card {
+    width: 100%;
+    margin: 0px;
+  }
+
+}
+
+/* Animations */
+.zoom {
+	transition: ease-out 0.3s;
+  &:hover {
+  	transform: scale(1.1);
+  }
+}
+
+
+.uphover {
+	position: relative;
+  transition: 
+    transform ease 0.3s,
+    box-shadow ease 0.3s;
+	box-shadow: 0px 3px 4px -1px rgba(0,0,0,0.3);
+   &:hover {
+	  transform: translateY(-4px) scale(1.03);
+	  box-shadow: 0px 12px 3px -8px rgba(0,0,0,0.3);
+	}
+}
+
+.fadeIn {
+  animation-name: fadeIn;
+  animation-duration: 1s;
+  animation-delay: 0s;
+  animation-direction: forwards; 
+}
+@keyframes fadeIn {
+  0% {opacity: 0;}
+  10% {opacity: 0;}
+  100% {opacity: 1;}
+}
+
+/* Bottom Text */
+.bottomText {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 1rem;
+  
+  width: 90vw;
+  color: white;
+  padding: 0.3rem;
+
+  P {margin: 0.5rem;}
+
+  a {
+    color: white;
+    &:hover{
+      color: $menuLinkHover;
+    }
+  }
+}
