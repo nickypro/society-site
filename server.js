@@ -39,7 +39,7 @@ app.get('/eventdata', (req, res) => {
     if ( diff >= 2*hour ) {
       console.log("Scraping timer reset")
       
-      async () => eventScraper(req, res, options);
+      eventScraper(req, res, options);
 
       count.seq += 2*hour;
       
