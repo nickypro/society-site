@@ -1,8 +1,8 @@
 /* Event Database */
 var mongoose = require('mongoose');
+const config = require('./src/config.json')
 
-URI = "mongodb+srv://admin:admin@freecodecamp-1dbrw.mongodb.net/test?retryWrites=true&w=majority"
-mongoose.connect(URI, { useNewUrlParser: true } );
+mongoose.connect(config.mongoUri, { useNewUrlParser: true } );
 
 const eventSchema = new mongoose.Schema({
   _id: String,

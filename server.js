@@ -11,6 +11,8 @@ var dateFormat = require('dateformat');
 const toTime = (t) => dateFormat(t, "HH:MM"); /*"h:MM TT"*/
 const config = require('./src/config.json')
 
+mongoose.connect(config.mongoUri, { useNewUrlParser: true } );
+
 var CounterSchema = new mongoose.Schema({
   _id: {type: String, required: true}, 
   seq: { type: Number, default: 0 }    

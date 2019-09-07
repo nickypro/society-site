@@ -1,8 +1,9 @@
 {
-  "shortTitle" : "vegansoc",
+  "shortTitle": "vegansoc",
   "longTitle" : "DU Vegan Society",
   "menuItems" : ["Events", "Guide", "About Us"],
   "eventsUrl" : "https://m.facebook.com/pg/duvegansoc/events/",
-  "scraperUrl" : "http://api.scraperapi.com?api_key=b3847a8ad06fd9aad82d8ba7db3220aa",
-  "wpUrl" : "https://vegansoc.000webhostapp.com/"
+  "scraperUrl": "http://api.scraperapi.com?api_key=b3847a8ad06fd9aad82d8ba7db3220aa",
+  "wpUrl"     : "https://vegansoc.000webhostapp.com/",
+  "mongoUri"  : "mongodb+srv://admin:admin@freecodecamp-1dbrw.mongodb.net/test?retryWrites=true&w=majority"
 }
