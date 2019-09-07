@@ -2,14 +2,14 @@ const express = require('express');
 const bodyParser = require('body-parser')
 const path = require('path');
 const app = express();
-const rp = require('request-promise');
-const cheerio = require('cheerio');
 var mongoose = require('mongoose');
 const eventScraper = require('./scraper')
 const Event = require('./event')
 var dateFormat = require('dateformat');
 const toTime = (t) => dateFormat(t, "HH:MM"); /*"h:MM TT"*/
 const config = require('./src/config.json')
+const request = require('request')
+//const authToken = require('./cherrypie.js');
 
 mongoose.connect(config.mongoUri, { useNewUrlParser: true } );
 
@@ -46,17 +46,13 @@ app.get('/eventdata', (req, res) => {
     const hour = 3600000;
     const diff = Number( new Date() ) - count.seq;
 
-    //eventScraper(req, res, options);
-    
     if ( diff >= 2*hour ) {
       console.log(now(), "Scraping timer reset")
       
       eventScraper(options);
       count.seq += 2*hour;
-      
       count.save();
 
-      console.log("Scraping request completed")
     } else {
       
       const nextTime = toTime( new Date(2*hour - diff) ); 
@@ -81,17 +77,5 @@ app.get('/:page', function (req, res) {
   res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
 
-/* Web scraper */
-
-//const url = `https://m.facebook.com/pg/duvegansoc/events/`;
-//const proxiedUrl = `http://api.scraperapi.com?api_key=b3847a8ad06fd9aad82d8ba7db3220aa&url=${url}`
-//const proxiedUrl = "http://pesvut.netsoc.ie/other/oldpagetoscrape.html"
-//const proxiedUrl = "http://pesvut.netsoc.ie/other/newtestpagetoscrape.html"
-const proxiedUrl = `${config.scraperUrl}&url=${config.eventsUrl}`  
-
-const options = {
-  url: proxiedUrl,
-  json: false
-}
 
 app.listen(process.env.PORT || 8080);
