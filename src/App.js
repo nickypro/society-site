@@ -63,6 +63,7 @@ class App extends React.Component {
             style={this.isMenuShown.bind(this)()? {transform: "translateX(100%)"} : {}}>
         <Switch>
           <Route path="/events" component={Events} />
+          <Route path="/signup" component={SignUp} />
           <Route path="/:slug" component={Wordpress} />
           <Route path="/" component={BigLogo} />
         </Switch>    
@@ -94,11 +95,8 @@ function Events(props) {
   }, [] );
 
   const fetchEvents = async () => {
-    const data = await fetch(
-    window.location.origin + "/eventdata"
-  );
-
-  const events = await data.json();
+    const data    = await fetch(window.location.origin + "/eventdata");
+    const events  = await data.json();
     setEvents(events)
   }
 
@@ -113,7 +111,7 @@ function Events(props) {
         .reverse()
         .map(event => <Event event={event} key={event._id} />)}
       </div>
-      {events.length!=0?
+      {events.length !== 0?
       <h2 style={{fontFamily: "'Playfair Display', serif"}}> Past Events </h2>
       :""}  
       <div className="events">
@@ -176,6 +174,21 @@ function Wordpress(props) {
   </div>
   )
 }
+
+const SignUp = (props) => (
+  <div className="card">
+    <h1>Sign up Form</h1>
+    <form action="api/studentSignUp" method="post" className="signUpForm">
+      <div style={{display: "flex", width:"100%"}}>
+      <input required placeholder="First Name"  type="text"  name="firstName" style={{width: "48%"}}/>
+      <input required placeholder="Last Name"  type="text"  name="lastName" style={{width: "48%"}}/>
+      </div>
+      <input required placeholder="Email (Preferably @tcd.ie)" type="email" name="email"/>
+      <input required placeholder="Student ID" type="text"  name="studentID"/>
+      <input type="submit" value="Submit" className="button"/>
+    </form>  
+  </div>
+)
 
 const Loading = () => (
   <div className="leftRightLeft" />
