@@ -1,7 +1,7 @@
 const rp = require('request-promise');
 const cheerio = require('cheerio');
 const Event = require('./event')
-  
+
 
 /* cut string */
 function cut(str, from, to) {
@@ -24,7 +24,7 @@ function checkEvent( e ) {
   })
 }
 
-function eventScraper(req, res, options) {
+function eventScraper(options) {
 console.log("----- scraping events -----")
   rp(options)
   .then(data => {

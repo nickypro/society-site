@@ -17,6 +17,8 @@ var CounterSchema = new mongoose.Schema({
 });
 var counter = mongoose.model('counter', CounterSchema);
 
+const now = () => new Date().getHours() + ":" + new Date().getMinutes();	 
+
 /* use Express */
 app.use(express.static(path.join(__dirname, 'build')));
 
@@ -24,12 +26,20 @@ app.get('/ping', function (req, res) {
  return res.send('pong');
 });
 
+/* Web scraper Options*/
+const options = {
+  url: `${config.scraperUrl}&url=${config.eventsUrl}`,
+  json: false
+}
 
+/* get event data api */
 app.get('/eventdata', (req, res) => {
-  console.log("Trying to scrape")
+  
+  console.log(now(), "Trying to scrape")
+  
   counter.findById('previousScrape').then(count => {
 
-    if (!count) new counter({_id: 'previousScrape', seq: Number(new Date)}).save()
+    if (!count) new counter({_id: 'previousScrape', seq: Number(new Date)} ).save()
 
     const hour = 3600000;
     const diff = Number( new Date() ) - count.seq;
@@ -37,20 +47,22 @@ app.get('/eventdata', (req, res) => {
     //eventScraper(req, res, options);
     
     if ( diff >= 2*hour ) {
-      console.log("Scraping timer reset")
+      console.log(now(), "Scraping timer reset")
       
-      eventScraper(req, res, options);
-
+      eventScraper(options);
       count.seq += 2*hour;
       
       count.save();
 
       console.log("Scraping request completed")
     } else {
-      console.log(`Time until next scraping request: ${toTime( new Date(2*hour - diff) )} `)
+      
+      const nextTime = toTime( new Date(2*hour - diff) ); 
+      console.log(`${now()} Time until next scraping request: ${nextTime} `)
+    
     }
 
-  })
+  }).catch( err => console.log(err))
 
   Event.find({}) 
   .then( data => {
