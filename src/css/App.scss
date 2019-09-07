@@ -162,14 +162,19 @@ a {
   }
 }
 
-.download {
+.button, .download {
   display: inline-block;
   text-align: center;
   font-size: 1.85rem;
   margin-top: 1rem; 
   padding: 0.5rem 1rem;
-  background-color: #ded;
+  border: $darkGreen solid;
+  background-color: rgba(#ded, 0.2);
+  border-left: 0;
+  border-right: 0;
+  transition: background-color 0.2s ease-out;
   color: $purpleColor;
+  cursor: pointer;
   
   &:hover{
     background-color: darken(#ded, 5);
@@ -450,6 +455,17 @@ button{
   100%{
     transform-origin: 100%;
     transform: scaleX(0.02);
+  }
+}
+
+/**/
+.signUpForm {
+  display: flex; 
+  flex-direction: column;
+  input{
+    font-size: 1.5rem;
+    padding: 0.5rem;
+    margin: 0.5rem;
   }
 }
 

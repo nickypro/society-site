@@ -177,17 +177,23 @@ a:hover {
   text-transform: capitalize;
 }
 
-.download {
+.button, .download {
   display: inline-block;
   text-align: center;
   font-size: 1.85rem;
   margin-top: 1rem;
   padding: 0.5rem 1rem;
-  background-color: #ded;
+  border: #09513C solid;
+  background-color: rgba(221, 238, 221, 0.2);
+  border-left: 0;
+  border-right: 0;
+  -webkit-transition: background-color 0.2s ease-out;
+  transition: background-color 0.2s ease-out;
   color: #471147;
+  cursor: pointer;
 }
 
-.download:hover {
+.button:hover, .download:hover {
   background-color: #cce6cc;
   -webkit-box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.2);
           box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.2);
@@ -600,6 +606,23 @@ button {
     -webkit-transform: scaleX(0.02);
             transform: scaleX(0.02);
   }
+}
+
+/**/
+.signUpForm {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.signUpForm input {
+  font-size: 1.5rem;
+  padding: 0.5rem;
+  margin: 0.5rem;
 }
 
 /* Bottom Text */
