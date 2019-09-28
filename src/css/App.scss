@@ -163,17 +163,20 @@ a {
 }
 
 .button, .download {
+  text-transform: uppercase;
   display: inline-block;
   text-align: center;
   font-size: 1.85rem;
-  margin-top: 1rem; 
+  margin: 1rem 0px;
+  flex: 1;
   padding: 0.5rem 1rem;
   border: $darkGreen solid;
   background-color: rgba(#ded, 0.2);
   border-left: 0;
   border-right: 0;
   transition: background-color 0.2s ease-out;
-  color: $purpleColor;
+  color: $darkGreen;
+  font-weight: 500;
   cursor: pointer;
   
   &:hover{
@@ -466,6 +469,14 @@ button{
     font-size: 1.5rem;
     padding: 0.5rem;
     margin: 0.5rem;
+    width: calc(100%-1rem);
+  }
+  .inputLabel {
+    display: flex;
+    width: 100%;
+    justify-content: stretch;
+    h2 { width: 30%}
+    input { width: 66%}
   }
 }
 
