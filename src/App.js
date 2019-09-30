@@ -137,9 +137,7 @@ const Event = (props) => (
       <span className="dateMonth">  {toMon(props.event.date)}</span>
     </div>
     <div className="eventData">
-      <h2>  {(props.event.title.length > 30) ? 
-                props.event.title.slice(0, 29)+"...": 
-                props.event.title}</h2>
+      <h2>  {props.event.title}</h2>
       <p>   {props.event.location}</p>
       <p>{toTime(props.event.date)}</p>
     </div>
