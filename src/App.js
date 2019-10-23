@@ -58,7 +58,7 @@ class App extends React.Component {
   render() {
   return (
     <Router>
-    {initializeReactGA(window.location)}
+    {initializeReactGA(window.location.pathname)}
     <div className="App welcomeBox"
     style={ this.isMenuShown.bind(this)()?{ /*gridTemplateRows: "1fr 0px"*/ }:{}}>
       <Menu menuItems={this.state.menuItems} 
