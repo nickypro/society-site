@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import ReactGA from 'react-ga';
 import './css/App.css';
 import Menu from './Menu';
 const config = require('./config.json');
@@ -15,6 +16,11 @@ const toNum = (t) => Number(new Date(t));
 const startOfToday = () => new Date().setHours(0,0,0,0);
 
 const postsUrl = `${config.wpUrl}wp-json/wp/v2/posts`;
+
+function initializeReactGA(page) {
+  ReactGA.initialize('UA-150841345-1');
+  ReactGA.pageview(page);
+}
 
 class App extends React.Component {
   constructor(props) {
@@ -52,6 +58,7 @@ class App extends React.Component {
   render() {
   return (
     <Router>
+    {initializeReactGA(window.location)}
     <div className="App welcomeBox"
     style={ this.isMenuShown.bind(this)()?{ /*gridTemplateRows: "1fr 0px"*/ }:{}}>
       <Menu menuItems={this.state.menuItems} 
