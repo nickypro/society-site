@@ -4,6 +4,9 @@
   "private": true,
   "proxy": "http://localhost:8080",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "buffer": "^5.4.2",
+    "buffer-js": "0.0.3",
     "cheerio": "^1.0.0-rc.3",
     "dateformat": "^3.0.3",
     "datejs": "^1.0.0-rc3",
@@ -12,10 +15,12 @@
     "mongoose": "^5.6.10",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
+    "react-ga": "^2.7.0",
     "react-router-dom": "^5.0.1",
     "react-scripts": "3.1.1",
     "request": "^2.88.0",
-    "request-promise": "^4.2.4"
+    "request-promise": "^4.2.4",
+    "scrypt-js": "^2.0.4"
   },
   "scripts": {
     "start": "react-scripts start",

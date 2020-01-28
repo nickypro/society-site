@@ -1,6 +1,6 @@
 const rp = require('request-promise');
 const cheerio = require('cheerio');
-const Event = require('./event')
+const Event = require('./eventModel')
 
 
 /* cut string */
@@ -14,8 +14,8 @@ function checkEvent( e ) {
   Event.findById(e._id, (err,data) => {
     if (data) {
       console.log(e._id, " Has been found, updating:")
-      data.update({e})
-      
+      Event.updateOne({id: e._id}, e)
+
     } else {
       console.log(e._id +" not Found, Adding to Database")
       event = new Event(e)
