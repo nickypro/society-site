@@ -7,13 +7,22 @@ $yellowGreen: #cdff74;
 $golden: #ECFEAA;
 $flax: #E2DE84;
 
+$textColor: $purpleColor;
+
 $linkHover: lighten($purpleColor, 15);
 
-$menuLinkHover: $yellowGreen;
+$boxGradient: linear-gradient( 60deg, $paleGreen, $yellowGreen);
+
+$mainLinkDark  : $darkGreen;
+$mainLinkLight : rgba(#ded, 0.2);
+$mainLinkHover : darken(#ded, 5);
+
+$menuLinkHover:$yellowGreen;
 $menuHeadColor: white;
 $menuButtonColor: white;
 $menuButtonColorHover: $yellowGreen;
 $menuButtonBackground: rgba(white, 0.1);
+$menuButtonBackgroundHover: linear-gradient(30deg, rgba($darkGreen, 0.8), rgba(lighten($darkGreen, 20), 0.8) );
 
 html, body {
   width: 100%;
@@ -48,7 +57,7 @@ h1 {
     right: 1rem;
     bottom: -0.8rem;
     height: 1px;
-    background-color: $purpleColor;
+    background-color: $textColor;
   }
 }
 p,a {
@@ -57,7 +66,7 @@ p,a {
 a {
   position: relative;
   text-decoration: none;
-  color: $purpleColor;
+  color: $textColor;
   &:hover{
     color: $linkHover;
   }
@@ -79,9 +88,9 @@ a {
 
   &::after {
     content: "";
-    background: linear-gradient( 60deg, $paleGreen, $yellowGreen);
+    background: $boxGradient;
     background-color: #333;
-    background-image: url("../trees03hd.jpg");
+    background-image: url("../background.jpg");
     background-position: center;
     background-size: cover;
     opacity: 0.3;
@@ -170,17 +179,17 @@ a {
   margin: 1rem 0px;
   flex: 1;
   padding: 0.5rem 1rem;
-  border: $darkGreen solid;
-  background-color: rgba(#ded, 0.2);
+  border: $mainLinkDark solid;
+  background-color: $mainLinkLight;
   border-left: 0;
   border-right: 0;
   transition: background-color 0.2s ease-out;
-  color: $darkGreen;
+  color: $mainLinkDark;
   font-weight: 500;
   cursor: pointer;
-  
+
   &:hover{
-    background-color: darken(#ded, 5);
+    background-color: $mainLinkHover;
     box-shadow: 0px 2px 3px rgba(black, 0.2);
   }
 }
@@ -241,7 +250,7 @@ a {
   }
   p {
     margin: 0.2rem 0px 0px;
-    color: lighten($purpleColor, 20);
+    color: lighten($textColor, 20);
   } 
 }
 
@@ -301,7 +310,7 @@ button{
 	box-sizing: border-box;
     
   &:hover {
-    background:	linear-gradient(30deg, rgba($darkGreen, 0.8), rgba(lighten($darkGreen, 20), 0.8) );
+    background:	$menuButtonBackgroundHover;
     color: $menuButtonColorHover;
     text-shadow: none;
   }

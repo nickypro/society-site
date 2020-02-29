@@ -70,7 +70,7 @@ a:hover {
   content: "";
   background: linear-gradient(60deg, #9CFC97, #cdff74);
   background-color: #333;
-  background-image: url("../trees03hd.jpg");
+  background-image: url("../background.jpg");
   background-position: center;
   background-size: cover;
   opacity: 0.3;
