@@ -4,11 +4,12 @@ const path = require('path');
 const app = express();
 var mongoose = require('mongoose');
 const eventScraper = require('./scraper')
-const Event = require('./event')
+const Event = require('./eventModel')
 var dateFormat = require('dateformat');
 const toTime = (t) => dateFormat(t, "HH:MM"); /*"h:MM TT"*/
 const config = require('./src/config.json')
-const request = require('request')
+var bcrypt = require("bcryptjs");
+//const request = require('request')
 //const authToken = require('./cherrypie.js');
 
 mongoose.connect(config.mongoUri, { useNewUrlParser: true } );
@@ -70,12 +71,27 @@ app.get('/eventdata', (req, res) => {
   })
 });
 
+app.get('/api/getHash', async (req, res) => {
+  const salt = bcrypt.genSaltSync(10);
+  const hash = bcrypt.hashSync("password", salt);
+  res.json({hash})
+})
+
+app.get('/admin', async (req, res) => {
+  const salt = bcrypt.genSaltSync(10);
+  const hash = bcrypt.hashSync("password", salt);
+  if ( bcrypt.compareSync(res.body.password, hash) ){
+    res.send("Nice you logged in")
+  } else {
+    res.sendFile(path.join(__dirname, 'build', 'index.html'));
+  }
+})
+
 app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
 app.get('/:page', function (req, res) {
   res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
-
 
 app.listen(process.env.PORT || 8080);
