@@ -12,7 +12,7 @@
     "datejs": "^1.0.0-rc3",
     "express": "^4.17.1",
     "mongodb": "^3.3.0",
-    "mongoose": "^5.6.10",
+    "mongoose": "^5.7.5",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
     "react-ga": "^2.7.0",
